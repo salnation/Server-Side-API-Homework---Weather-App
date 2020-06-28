@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server-Side API Homework - Weather Dashboard</title>
+    <!-- linking the jQuery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Linking the ajax lib moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.27/moment-timezone-with-data.js"></script>  
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.27/moment-timezone-utils.js"></script>
     <!-- Linking for bootstrap compatability -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -13,11 +20,14 @@
 </head>
 
 <body>
+  <header>
     <!-- Utilize the jumbotron in bootstrap for the Weather Dashboard heading -->
     <div class="jumbotron jumbotron-fluid bg-dark text-white">
       <h1 class="text-center">Real-Time Weather Dashboard</h1>
     </div>
+  </header>
 
+  <main>
     <!-- Now I will utilize cards with bootstrap - Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization -->
     <div class="container">
       <div class="row">
@@ -25,7 +35,7 @@
         <div class="col-lg-4">
           <div class="card" id="search-cities">
             <div class="card-header">
-              <h4>City Search:</h4>
+              <h6>City Search:</h6>
             
             <!-- Ulitlizing the bootrap form to create the search input and ultimately the search button -->
             <form class="form-inline pb-2">
@@ -36,19 +46,34 @@
             </form>
 
             <!-- show card hide to be executed after the user clicks the button -->
-            <div class="card hide" id="searched-cities-card">
-              <ul class="list-group list-group-flush" id="searched-cities-list">
+            <div class="card hide" id="searchedcities-card">
+              <ul class="list-group list-group-flush" id="searchedcities-list">
               </ul>
             </div>
           </div>
         </div>
     </div>
       
-    
+    <!-- Time to create an area to display current weather conditions -->
+    <div class="col-lg-8">
+      <!-- This will display the creent weather -->
+      <div class="row" id="current-weather-conditions">
     </div>
-  </div>>
+      
+    <!-- this next part will allow the user to display the five day forecast -->
+    <div class="row" id="five-day-forecast">
+      <div class="card-deck w-100">
+      </div>
+    </div>
+  
+    
+  </div>
+</div>
+    
+  </div>
+</div>>
   
   <!-- Linked to the script.js that will be updated -->
-
+  <script src="script.js"></script>
 </body>
 </html>
