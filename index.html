@@ -13,6 +13,32 @@
 </head>
 
 <body>
+    <!-- Utilize the jumbotron in bootstrap for the Weather Dashboard heading -->
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+      <h1 class="text-center">Real-Time Weather Dashboard</h1>
+    </div>
+
+    <!-- Now I will utilize cards with bootstrap - Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization -->
+    <div class="container">
+      <div class="row">
+        <!-- we need a search button for the user to search for the city/destrination of their choice -->
+        <div class="col-lg-4">
+          <div class="card" id="search-cities">
+            <div class="card-header">
+              <h4>City Search:</h4>
+            
+            <!-- Ulitlizing the bootrap form to create the search input and ultimately the search button -->
+            <form class="form-inline pb-2">
+              <input type="text" class="form-control mr-2" id="search-input">
+              <button type="submit" class="btn btn-primary" id="search-btn">
+                  <i class="fa fa-search"></i>
+              </button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>>
     
 </body>
 </html>
