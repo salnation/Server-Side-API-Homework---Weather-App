@@ -1,0 +1,9 @@
+/* Because I will be using all and only bootrap for this weather app I will only be using these two commands */
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
