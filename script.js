@@ -69,3 +69,29 @@ $(document).on("click", ".list-group-item", function() {
   resetGlobalVariables();
   searchCity(cityName);
 });
+
+// adding the function for displayCurrentWeather - variables needed to be added to the function include the card heading, the weather image, the temperature, humidity, wind speed and uv index
+function displayCurrentWeather() {
+  var weatherImage = 
+  var cardHeader = 
+  var uvIndex =
+  var temperatureC =
+  var temperatureF =
+  var windSpeed =
+  var cardDiv =
+  var humidity =
+}
+
+// Next I will create a function for the day forcast in the area of the user's choice - variable to be included are an image icon, the card header and card title, the card image and card text under the image, the min and max temp and the humidity 
+var cardDiv =
+var cardBlockDiv =
+var cardTitleDiv =
+var cardTextDiv =
+var humidity =
+var minTemp =
+var maxTemp =
+var cardTitleHeader =
+
+// next function will be a deck header for when the user clicks the option for the 5 day forecast in the area 
+
+// after this the weather info that is currently displayed for the user must be cleared with another function clearDisplayedWeatherInfo
