@@ -72,26 +72,52 @@ $(document).on("click", ".list-group-item", function() {
 
 // adding the function for displayCurrentWeather - variables needed to be added to the function include the card heading, the weather image, the temperature, humidity, wind speed and uv index
 function displayCurrentWeather() {
-  var weatherImage = 
-  var cardHeader = 
-  var uvIndex =
-  var temperatureC =
-  var temperatureF =
-  var windSpeed =
-  var cardDiv =
-  var humidity =
+  var weatherImage = $("<img>").attr('src', currentWeatherIconUrl);
+  var cardHeader = $("<h4>").text(city + " " + currentDate.toString());
+  var uvIndex = $("<p>").text("UV Index: ");
+  // temperature in celcius 
+  var temperatureC = $("<p>").text("Temperature: " + tempC+ " ºF");
+  // temperature in farenheit 
+  var temperatureF = $("<p>").text("Temperature: " + tempF+ " ºF");
+  // wind speed is in miles per hour 
+  var windSpeed = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
+  var cardDiv = $("<div class='container border bg-light'>");
+  var humidity = $("<p>").text("Humidity: " + humidityValue + "%");
+  cardDiv.append(cardHeader);
+  cardDiv.append(temperatureC);
+  cardDiv.append(temperatureF);
+  cardDiv.append(humidity);
+  cardDiv.append(windSpeed);
+  cardDiv.append(uvIndex);
+  $("#current-weather-conditions").append(cardDiv);
 }
 
 // Next I will create a function for the day forcast in the area of the user's choice - variable to be included are an image icon, the card header and card title, the card image and card text under the image, the min and max temp and the humidity 
-var cardDiv =
-var cardBlockDiv =
-var cardTitleDiv =
-var cardTextDiv =
-var humidity =
-var minTemp =
-var maxTemp =
-var cardTitleHeader =
+var cardDiv = $("<div class='card'>").addClass("pl-1 bg-primary text-light");
+var cardBlockDiv = $("<div>").attr("class", "card-block");
+var cardTitleDiv = $("<div>").attr("class", "card-block");
+var cardTextDiv = $("<div>").attr("class", "card-text");
+var humidity = $("<p>").text("Humidity: " + dayhumidity + "%").css("font-size", "0.60rem");
+var minTempF = $("<p>").text("Min Temp: " + minTempF + " ºF").css("font-size", "0.60rem");
+var maxTempF = $("<p>").text("Max Temp: " + maxTempF + " ºF").css("font-size", "0.60rem");
+var minTempC = $("<p>").text("Min Temp: " + minTempC + " ºC").css("font-size", "0.60rem");
+var maxTempC = $("<p>").text("Max Temp: " + maxTempC + " ºC").css("font-size", "0.60rem");
+var cardTitleHeader = $("<h6>").text(dateValue).addClass("pt-2");
+cardTextDiv.append(img);
+cardTextDiv.append(minTempF);
+cardTextDiv.append(maxTempF);
+cardTextDiv.append(minTempC;
+cardTextDiv.append(maxTempC);
+cardTextDiv.append(humidity);
+cardTitleDiv.append(cardTitleHeader);
+cardBlockDiv.append(cardTitleDiv);
+cardBlockDiv.append(cardTextDiv);
+cardEl.append(cardBlockDiv);
+$(".card-deck").append(cardEl);
+}
 
 // next function will be a deck header for when the user clicks the option for the 5 day forecast in the area 
+
+
 
 // after this the weather info that is currently displayed for the user must be cleared with another function clearDisplayedWeatherInfo
