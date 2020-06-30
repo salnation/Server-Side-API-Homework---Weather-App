@@ -44,3 +44,9 @@ User Specifications:
 Functional Application - click here:
 
 - 
+
+References through the project:
+
+https://www.freecodecamp.org/news/how-i-built-my-own-forecasting-tool-using-a-weather-api/
+
+

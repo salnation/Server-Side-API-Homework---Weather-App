@@ -170,6 +170,22 @@ console.log(currentDate);
 humidityValue = result.main.humidity;
 windSpeed = result.wind.speed;
 
+// r etrieves the 5-Day forcast from openWeatherAPI using again the .AJAX
+
+var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&appid=" + APIKey + "&cnt=5";
+     $.ajax({
+       url: fiveDayQueryUrl,
+       method: "GET"
+     })
+
+ //  dateValue = moment().tz(country + "/" + city).add(i, 'days').format('l');
+
+ // lastly retreives the temperature in F and C
+
+ minTempC = fiveDayForecast[i].temp.min;
+ minTempF =  ((formula).toFixed(1);
+ maxTempC = fiveDayForecast[i].temp.max;
+ maxTempF =  (((formula)).toFixed(1);
 
 // I will have to reset all of the variables at this point 
 
