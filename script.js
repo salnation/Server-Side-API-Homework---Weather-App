@@ -118,6 +118,37 @@ $(".card-deck").append(cardEl);
 
 // next function will be a deck header for when the user clicks the option for the 5 day forecast in the area 
 
-
+function addCardDeckHeader() {
+  deckHeader = $("<h4>").text("5-Day Forecast").attr("id", "card-deck-title");
+  deckHeader.addClass("pt-4 pt-2");
+  $(".card-deck").before(deckHeader);
+}
 
 // after this the weather info that is currently displayed for the user must be cleared with another function clearDisplayedWeatherInfo
+
+function clearDisplayedWeatherInfo() {
+  $("#current-weather-conditions").empty();
+  $("#card-deck-title").remove();
+  $(".card-deck").empty();
+}
+
+// I will then allow the user to view the cities that they have searched during their visit to the page. This will be done calling the searched-cities-list id for the cities list.
+
+function displayCities(citiesList) {
+  $("#searched-cities-card").removeClass("hide");
+  var count = 0;
+  citiesList.length > 5 ? count = 5 : count = citiesList.length
+  for (var i=0; i < count; i++) 
+}
+
+// The next steps will include the new topics we learned this week in class. building the URL to query the openWeatherAPI database
+// I am pretty sure this is where the APIkey will have to go
+
+var queryURL = "";
+
+// Then I will have to run AJAX to send the call to the openWeatherAPI database
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
