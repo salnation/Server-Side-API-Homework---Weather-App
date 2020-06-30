@@ -152,3 +152,42 @@ $.ajax({
   url: queryURL,
   method: "GET"
 })
+
+// the data that is retreived by the AJAX and openWeatherAPI above has to be stored somewhere 
+
+.then(function(response) {
+  var result = response;
+  console.log(result);
+  city = result.name.trim();
+}
+
+// retreives the current date using moment.unix
+currentDate = moment.unix(result.dt).format("1");
+console.log(currentDate);
+
+// retreives windspeed and humidity 
+
+humidityValue = result.main.humidity;
+windSpeed = result.wind.speed;
+
+
+// I will have to reset all of the variables at this point 
+
+function resetGlobalVariables() {
+  humidity = "";
+  city = "";
+  currentDate = "";
+  minTempC = "";
+  maxTempC = "";
+  minTempF = "";
+  maxTempF = "";
+  windSpeed = "";
+  humidity = "";
+  currentWeather = "";
+  country = "";
+  latitude = "";
+  longitude = "";
+  uvIndex = "";
+  tempF = "";
+  tempC = "";
+}
