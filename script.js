@@ -161,15 +161,13 @@ function resetGlobalVariables() {
   country = "";
   latitude = "";
   longitude = "";
-  uvIndex = "";
-  tempF = "";
-  tempC = "";
 }
 
 // The next steps will include the new topics we learned this week in class. building the URL to query the openWeatherAPI database
 // I am pretty sure this is where the APIkey will have to go
 
-var queryURL = "";
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + 
+ cityName + "&appid=" + APIKey;
 
 // Then I will have to run AJAX to send the call to the openWeatherAPI database
 
@@ -194,6 +192,12 @@ console.log(currentDate);
 
 humidityValue = result.main.humidity;
 windSpeed = result.wind.speed;
+
+// get results for the current weather from openWeatherMap API
+currentWeatherIconCode = result.weather[0].icon;
+   currentWeatherIconUrl = "https://openweathermap.org/img/w/" + currentWeatherIconCode + ".png";
+   var latitude = result.coord.lat;
+   var longitude = result.coord.lon;
 
 // r etrieves the 5-Day forcast from openWeatherAPI using again the .AJAX
 
