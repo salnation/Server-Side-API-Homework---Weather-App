@@ -42,25 +42,24 @@ $("search-btn").on("click",function() {
   var cityName = $("input").val().toUpperCase().trim();
   $("#search-input").val("");
   searchCity(cityName);
-}
 
-if (cityName !== "" && listOfSearchedCities[0] !== cityName) {
+if (cityName !== ""&& listOfSearchedCities[0] !== cityName) {
   listOfSearchedCities.unshift(cityName);
   localStorage.setItem("searched-cities", JSON.stringify(listOfSearchedCities));
   if (listOfSearchedCities.length === 1) {
-    $("#searchedcities-card").removeClass("hide");
+    $("#searched-cities-card").removeClass("hide");
   }
 
-  console.log($("ul#searchedcities-list a").length);
-  if ($("ul#searchedcities-list a").length >= 5) {
-      ($("ul#searchedcities-list a:eq(4").remove());
+  console.log($("ul#searched-cities-list a").length);
+  if ($("ul#searched-cities-list a").length >= 5) {
+      ($("ul#searched-cities-list a:eq(4").remove());
   }
   $("#searched-cities-list").prepend(`<a href="#" class="list-group-item" style="text-decoration: none; color: black;">
     <li>${cityName}</li>
     </a>`);
 }
-
 });
+
 // Reset the displayed weather info, the global variables and the searched cities
 $(document).on("click", ".list-group-item", function() {
   var cityName = $(this).text();
@@ -71,17 +70,15 @@ $(document).on("click", ".list-group-item", function() {
 
 // adding the function for displayCurrentWeather - variables needed to be added to the function include the card heading, the weather image, the temperature, humidity, wind speed and uv index
 function displayCurrentWeather() {
+  var cardDiv = $("<div class='container border bg-light'>");
   var weatherImage = $("<img>").attr('src', currentWeatherIconUrl);
   var cardHeader = $("<h4>").text(city + " " + currentDate.toString());
-  var uvIndex = $("<p>").text("UV Index: ");
-  // temperature in celcius 
-  var temperatureC = $("<p>").text("Temperature: " + tempC+ " ºF");
-  // temperature in farenheit 
-  var temperatureF = $("<p>").text("Temperature: " + tempF+ " ºF");
-  // wind speed is in miles per hour 
-  var windSpeed = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
-  var cardDiv = $("<div class='container border bg-light'>");
-  var humidity = $("<p>").text("Humidity: " + humidityValue + "%");
+  cardHeader.append(weatherImage);
+  var temperatureEl = $("<p>").text("Temperature: " + tempF+ " ºF");
+  var humidityEl = $("<p>").text("Humidity: " + humidityValue + "%");
+  var windSpeedEl = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
+  var uvIndexEl = $("<p>").text("UV Index: ");
+  
   cardDiv.append(cardHeader);
   cardDiv.append(temperatureC);
   cardDiv.append(temperatureF);
@@ -92,22 +89,24 @@ function displayCurrentWeather() {
 }
 
 // Next I will create a function for the day forcast in the area of the user's choice - variable to be included are an image icon, the card header and card title, the card image and card text under the image, the min and max temp and the humidity 
-var cardDiv = $("<div class='card'>").addClass("pl-1 bg-primary text-light");
+var imgEl = $("<img>").attr("src", iconurl); 
+var cardEl = $("<div class='card'>").addClass("pl-1 bg-primary text-light");
 var cardBlockDiv = $("<div>").attr("class", "card-block");
 var cardTitleDiv = $("<div>").attr("class", "card-block");
+var cardTitleHeader = $("<h6>").text(dateValue).addClass("pt-2");
 var cardTextDiv = $("<div>").attr("class", "card-text");
-var humidity = $("<p>").text("Humidity: " + dayhumidity + "%").css("font-size", "0.60rem");
 var minTempF = $("<p>").text("Min Temp: " + minTempF + " ºF").css("font-size", "0.60rem");
 var maxTempF = $("<p>").text("Max Temp: " + maxTempF + " ºF").css("font-size", "0.60rem");
 var minTempC = $("<p>").text("Min Temp: " + minTempC + " ºC").css("font-size", "0.60rem");
 var maxTempC = $("<p>").text("Max Temp: " + maxTempC + " ºC").css("font-size", "0.60rem");
-var cardTitleHeader = $("<h6>").text(dateValue).addClass("pt-2");
-cardTextDiv.append(img);
+var humidityEl = $("<p>").text("Humidity: " + dayhumidity + "%").css("font-size", "0.60rem");
+
+cardTextDiv.append(imgEl);
 cardTextDiv.append(minTempF);
 cardTextDiv.append(maxTempF);
 cardTextDiv.append(minTempC;
 cardTextDiv.append(maxTempC);
-cardTextDiv.append(humidity);
+cardTextDiv.append(humidityEl);
 cardTitleDiv.append(cardTitleHeader);
 cardBlockDiv.append(cardTitleDiv);
 cardBlockDiv.append(cardTextDiv);
