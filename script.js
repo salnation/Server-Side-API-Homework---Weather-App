@@ -136,7 +136,34 @@ function displayCities(citiesList) {
   $("#searched-cities-card").removeClass("hide");
   var count = 0;
   citiesList.length > 5 ? count = 5 : count = citiesList.length
-  for (var i=0; i < count; i++) 
+  for (var i=0; i < count; i++) {
+    $("#searched-cities-list").css("list-style-type", "none");
+    $("#searched-cities-list").append(`<a href="#" class="list-group-item" style="text-decoration: none; color: black;">
+    <li>${citiesList[i]}</li>
+    </a>`);
+  }
+}
+
+// I will have to reset all of the variables at this point 
+
+function resetGlobalVariables() {
+  humidityValue = "";
+  city = "";
+  currentDate = "";
+  tempC = "";
+  tempF = "";
+  windSpeed = "";
+  uvIndexValue = "";
+  dayHumidity = "";
+  currentWeatherIconCode = "";
+  iceoncode = "";
+  iconurl = "";
+  country = "";
+  latitude = "";
+  longitude = "";
+  uvIndex = "";
+  tempF = "";
+  tempC = "";
 }
 
 // The next steps will include the new topics we learned this week in class. building the URL to query the openWeatherAPI database
@@ -185,23 +212,3 @@ var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=
  maxTempC = fiveDayForecast[i].temp.max;
  maxTempF =  (((formula)).toFixed(1);
 
-// I will have to reset all of the variables at this point 
-
-function resetGlobalVariables() {
-  humidity = "";
-  city = "";
-  currentDate = "";
-  minTempC = "";
-  maxTempC = "";
-  minTempF = "";
-  maxTempF = "";
-  windSpeed = "";
-  humidity = "";
-  currentWeather = "";
-  country = "";
-  latitude = "";
-  longitude = "";
-  uvIndex = "";
-  tempF = "";
-  tempC = "";
-}
