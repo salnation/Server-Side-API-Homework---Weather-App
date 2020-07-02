@@ -25,6 +25,8 @@ var country = "";
 
 // Array of cities that have been previously been search stored in localStorage 
 
+// clicking on a city in the search history will present the user with current and future conditions for that city
+
 var listOfSearchedCities = [];
 
 // get the list of searched cities from localStorage utilizing JSON and getItem from localStorage
@@ -58,6 +60,8 @@ $("search-btn").on("click",function() {
   var cityName = $("input").val().toUpperCase().trim();
   $("#search-input").val("");
   searchCity(cityName);
+
+  // Using JSON .stringify method 
 
 if (cityName !== ""&& listOfSearchedCities[0] !== cityName) {
   listOfSearchedCities.unshift(cityName);
@@ -210,18 +214,21 @@ function resetGlobalVariables() {
 
 // create new function called searchCity that will call the openWeatherAPI query URL to retrieve the weather data for that city
 
+// search for a city and presented with current and future conditions for that city and that city is added to the search history
 function searchCity(cityName){
   // build URL to query the database
   console.log(cityName);
 
 // The next steps will include the new topics we learned this week in class. building the URL to query the openWeatherAPI database
-// I am pretty sure this is where the APIkey will have to go
+
+// viewing current weather conditions for that city will produce the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
 
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + 
  cityName + "&appid=" + APIKey;
 
 // Then I will have to run AJAX to send the call to the openWeatherAPI database
 
+// run the AJAX call to the OpenWatherAPI
 $.ajax({
   // run thr AJAX call
   url: queryURL,
@@ -237,6 +244,7 @@ $.ajax({
 }
 
 // retreives the current date using moment.unix learned in the last unit and used for the pervious assignment
+
 currentDate = moment.unix(result.dt).format("1");
 console.log(currentDate);
 
@@ -259,6 +267,9 @@ currentWeatherIconCode = result.weather[0].icon;
 
 // retrieve the data from openWeatherAPI for the unIndexQuery call using the URL and the method "GET"
 
+// user can view the UV index and is presented with a color that indicates whether the conditions are favorable, moderate, or severe
+
+// run the AJAX call to the OpenWatherAPI
 var uvIndexQueryUrl = "https://api.openweathermap.org/data/2.5/uvi?&appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
    $.ajax({
      url: uvIndexQueryUrl,
@@ -267,18 +278,32 @@ var uvIndexQueryUrl = "https://api.openweathermap.org/data/2.5/uvi?&appid=" + AP
 
 // r etrieves the 5-Day forcast from openWeatherAPI using again the .AJAX
 
+// viewing the future weather conditions for that city will present the user with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
+
 var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&appid=" + APIKey + "&cnt=5";
      $.ajax({
+       // run the AJAX call to the OpenWatherAPI
        url: fiveDayQueryUrl,
        method: "GET"
      })
 
- //  dateValue = moment().tz(country + "/" + city).add(i, 'days').format('l');
-
- // lastly retreives the temperature in F and C
-
- minTempC = fiveDayForecast[i].temp.min;
- minTempF =  ((formula).toFixed(1);
- maxTempC = fiveDayForecast[i].temp.max;
- maxTempF =  (((formula)).toFixed(1);
+     .then(function(response) {
+      var fiveDayForecast = response.list;
+      addCardDeckHeader()
+      for (var i=0; i < 5; i++) {
+        iconcode = fiveDayForecast[i].weather[0].icon;
+        iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
+       //  dateValue = moment().tz(country + "/" + city).add(i, 'days').format('l');
+       dateValue = moment.unix(fiveDayForecast[i].dt).format('l');
+        minTempK = fiveDayForecast[i].temp.min;
+        minTempF =  ((minTempK - 273.15) * 1.80 + 32).toFixed(1);
+        maxTempK = fiveDayForecast[i].temp.max;
+        maxTempF =  (((fiveDayForecast[i].temp.max) - 273.15) * 1.80 + 32).toFixed(1);
+        dayhumidity = fiveDayForecast[i].humidity;
+        displayDayForeCast()
+      } 
+    });      
+  }); 
+});
+}
 
