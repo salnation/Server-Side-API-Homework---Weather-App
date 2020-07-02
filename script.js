@@ -154,6 +154,7 @@ function displayCities(citiesList) {
   $("#searched-cities-card").removeClass("hide");
   var count = 0;
   citiesList.length > 5 ? count = 5 : count = citiesList.length
+  // for statement that we learned and used in pervious assignment
   for (var i=0; i < count; i++) {
     $("#searched-cities-list").css("list-style-type", "none");
     $("#searched-cities-list").append(`<a href="#" class="list-group-item" style="text-decoration: none; color: black;">
@@ -162,24 +163,56 @@ function displayCities(citiesList) {
   }
 }
 
+// new function to create to retrieve the data color code for the UV index from OpenWeatherAPI database
+
+function getColorCodeForUVIndex(uvIndex) {
+  var uvIndexValue = parseFloat(uvIndex);
+  var colorcode = "";
+  if (uvIndexValue <= 2) {
+    colorcode = "#00ff00";
+  }
+  else if ((uvIndexValue > 2) && (uvIndexValue <= 5)) {
+    colorcode = "#ffff00";
+  }
+  else if ((uvIndexValue > 5) && (uvIndexValue <= 7)) {
+    colorcode = "#ffa500";
+  }
+  else if ((uvIndexValue > 7) && (uvIndexValue <= 10)) {
+    colorcode = "#9e1a1a";
+  }
+  else if (uvIndexValue > 10) {
+    colorcode = "#7f00ff";
+  }
+  return colorcode;
+}
+
 // I will have to reset all of the variables at this point 
 
 function resetGlobalVariables() {
-  humidityValue = "";
   city = "";
   currentDate = "";
-  tempC = "";
-  tempF = "";
+  tempF = ""; // temperature in farenheit - must convert
   windSpeed = "";
   uvIndexValue = "";
+  minTempK = "";
+  maxTempK = "";
+  minTempF = "";
+  maxTempF = "";
   dayHumidity = "";
   currentWeatherIconCode = "";
+  currentWeatherIconUrl = "";
   iceoncode = "";
   iconurl = "";
   country = "";
   latitude = "";
   longitude = "";
 }
+
+// create new function called searchCity that will call the openWeatherAPI query URL to retrieve the weather data for that city
+
+function searchCity(cityName){
+  // build URL to query the database
+  console.log(cityName);
 
 // The next steps will include the new topics we learned this week in class. building the URL to query the openWeatherAPI database
 // I am pretty sure this is where the APIkey will have to go
@@ -190,6 +223,7 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
 // Then I will have to run AJAX to send the call to the openWeatherAPI database
 
 $.ajax({
+  // run thr AJAX call
   url: queryURL,
   method: "GET"
 })
@@ -202,7 +236,7 @@ $.ajax({
   city = result.name.trim();
 }
 
-// retreives the current date using moment.unix
+// retreives the current date using moment.unix learned in the last unit and used for the pervious assignment
 currentDate = moment.unix(result.dt).format("1");
 console.log(currentDate);
 
@@ -211,11 +245,25 @@ console.log(currentDate);
 humidityValue = result.main.humidity;
 windSpeed = result.wind.speed;
 
+// temperature conversion from K to F below
+
+var tempK = result.main.temp;
+   // Converts the temperature with the below formula
+   tempF = ((tempK - 273.15) * 1.80 + 32).toFixed(1);
+
 // get results for the current weather from openWeatherMap API
 currentWeatherIconCode = result.weather[0].icon;
    currentWeatherIconUrl = "https://openweathermap.org/img/w/" + currentWeatherIconCode + ".png";
    var latitude = result.coord.lat;
    var longitude = result.coord.lon;
+
+// retrieve the data from openWeatherAPI for the unIndexQuery call using the URL and the method "GET"
+
+var uvIndexQueryUrl = "https://api.openweathermap.org/data/2.5/uvi?&appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
+   $.ajax({
+     url: uvIndexQueryUrl,
+     method: "GET"
+   })
 
 // r etrieves the 5-Day forcast from openWeatherAPI using again the .AJAX
 
