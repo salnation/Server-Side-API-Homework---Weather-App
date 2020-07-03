@@ -36,51 +36,39 @@
 
     <div class="container">
       <div class="row">
-
-        <!-- we need a search button for the user to search for the city/destrination of their choice -->
-
+        <!-- card for search button and displaying searched cities name -->
         <div class="col-lg-4">
-          <div class="card" id="search-cities">
-            <div class="card-header">
-              <h6>City Search:</h6>
-            
-            <!-- Ulitlizing the bootrap form to create the search input and ultimately the search button -->
-
-            <form class="form-inline pb-2">
-              <input type="text" class="form-control mr-2" id="search-input">
-              <button type="submit" class="btn btn-primary" id="search-btn">
-                  <i class="fa fa-search"></i>
-              </button>
-            </form>
-
-            <!-- show card hide to be executed after the user clicks the button -->
-            <div class="card hide" id="searched-cities-card">
-              <ul class="list-group list-group-flush" id="searched-cities-list">
-              </ul>
+          <div class="card" id="search-cities"> 
+            <div class="card-header"> 
+              <h6>Search for a City:</h6>
+                <form class="form-inline pb-2">
+                  <input type="text" class="form-control mr-2" id="search-input">
+                  <button type="submit" class="btn btn-primary" id="search-btn">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </form>
+  
+                <div class="card hide" id="searched-cities-card">
+                  <ul class="list-group list-group-flush" id="searched-cities-list">
+                  </ul>
+                </div>
+            </div>
+          </div> 
+        </div>
+  
+        <div class="col-lg-8">
+          <!-- display current weather -->
+          <div class="row" id="current-weather-conditions">
+          </div>
+  
+          <!-- // display 5-day forcast -->
+          <div class="row" id="five-day-forecast">
+            <div class="card-deck w-100">
             </div>
           </div>
-        </div>
-    </div>
-      
-    <!-- Time to create an area to display current weather conditions -->
-
-    <div class="col-lg-8">
-
-      <!-- This will display the current weather in the area -->
-      
-      <div class="row" id="current-weather-conditions">
-    </div>
-      
-    <!-- this next part will allow the user to display the five day forecast for that area-->
-
-    <div class="row" id="five-day-forecast">
-      <div class="card-deck w-100">
+          
       </div>
     </div>
-  
-    
-  </div>
-</div>
 
 <!-- link to the CountryCodetoName.js -->
 
